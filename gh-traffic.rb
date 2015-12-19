@@ -104,8 +104,8 @@ traffic_string = g.traffic_data(@org, @repo)
 clone_string = g.clone_activity_data(@org, @repo)
 
 if @json 
-  puts JSON.parse(traffic_string)
-  puts JSON.parse(clone_string)
+  puts traffic_string
+  puts clone_string
 else
   traffic = JSON.parse(traffic_string)
   clone = JSON.parse(clone_string)
