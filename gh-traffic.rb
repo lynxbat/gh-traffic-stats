@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'pp'
 require 'optparse'
 require 'json'
