@@ -73,21 +73,6 @@ module GH
     	return data.to_s
     end
 
-    def traffic_data(user, repo)
-    	# we just need to set the type
-    	session.driver.add_headers("Accept" => "application/json")
-    	session.visit "https://github.com/#{user}/#{repo}/graphs/traffic-data"
-    	data = /({.*})/.match session.body
-    	return data.to_s
-    end
-
-    def clone_activity_data(user, repo)
-    	session.driver.add_headers("Accept" => "application/json")
-    	session.visit "https://github.com/#{user}/#{repo}/graphs/traffic-data"
-    	data = /({.*})/.match session.body
-    	return data.to_s
-    end
-
     def clone_activity_data(user, repo)
     	session.driver.add_headers("Accept" => "application/json")
     	session.visit "https://github.com/#{user}/#{repo}/graphs/clone-activity-data"
