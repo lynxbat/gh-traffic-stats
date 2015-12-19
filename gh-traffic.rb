@@ -28,7 +28,7 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-unless @user 
+unless @user
   puts "Must provide user. Please see comannd switches with -h."
   exit 1
 end
@@ -38,46 +38,46 @@ unless @pass
   exit 1
 end
 
-unless @org 
+unless @org
   puts "Must provide organization. Please see comannd switches with -h."
   exit 1
 end
 
-unless @repo 
+unless @repo
   puts "Must provide repository. Please see comannd switches with -h."
   exit 1
 end
 
 module GH
   class Session
-  	include Capybara::DSL
+    include Capybara::DSL
 
-  	attr_accessor :session
+    attr_accessor :session
 
     def initialize
-    	@session = Capybara::Session.new(:poltergeist)
+      @session = Capybara::Session.new(:poltergeist)
     end
 
     def login(user, pass)
-    	session.visit 'https://github.com/login'
-  		session.fill_in 'Username or email address', :with => user
-  		session.fill_in 'Password', :with => pass
-  		session.click_button 'Sign in'		
+      session.visit 'https://github.com/login'
+      session.fill_in 'Username or email address', :with => user
+      session.fill_in 'Password', :with => pass
+      session.click_button 'Sign in'
     end
 
     def traffic_data(user, repo)
-    	# we just need to set the type
-    	session.driver.add_headers("Accept" => "application/json")
-    	session.visit "https://github.com/#{user}/#{repo}/graphs/traffic-data"
-    	data = /({.*})/.match session.body
-    	return data.to_s
+      # we just need to set the type
+      session.driver.add_headers("Accept" => "application/json")
+      session.visit "https://github.com/#{user}/#{repo}/graphs/traffic-data"
+      data = /({.*})/.match session.body
+      return data.to_s
     end
 
     def clone_activity_data(user, repo)
-    	session.driver.add_headers("Accept" => "application/json")
-    	session.visit "https://github.com/#{user}/#{repo}/graphs/clone-activity-data"
-    	data = /({.*})/.match session.body
-    	return data.to_s
+      session.driver.add_headers("Accept" => "application/json")
+      session.visit "https://github.com/#{user}/#{repo}/graphs/clone-activity-data"
+      data = /({.*})/.match session.body
+      return data.to_s
     end
 
   end
@@ -88,7 +88,7 @@ g.login(@user, @pass)
 traffic_string = g.traffic_data(@org, @repo)
 clone_string = g.clone_activity_data(@org, @repo)
 
-if @json 
+if @json
   puts traffic_string
   puts clone_string
 else
@@ -97,9 +97,3 @@ else
   pp traffic
   pp clone
 end
-
-
-
-
-
-
