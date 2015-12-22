@@ -29,22 +29,22 @@ OptionParser.new do |opts|
 end.parse!
 
 unless @user
-  puts "Must provide user. Please see comannd switches with -h."
+  puts "Must provide user. Please see command switches with -h."
   exit 1
 end
 
 unless @pass
-  puts "Must provide password/token. Please see comannd switches with -h."
+  puts "Must provide password/token. Please see command switches with -h."
   exit 1
 end
 
 unless @org
-  puts "Must provide organization. Please see comannd switches with -h."
+  puts "Must provide organization. Please see command switches with -h."
   exit 1
 end
 
 unless @repo
-  puts "Must provide repository. Please see comannd switches with -h."
+  puts "Must provide repository. Please see command switches with -h."
   exit 1
 end
 
